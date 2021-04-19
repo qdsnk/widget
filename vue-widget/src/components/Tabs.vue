@@ -9,7 +9,7 @@
       <div id="yes-btn" class="btn yes-btn">Да</div>
       <div id="no-btn" class="btn no-btn">Нет</div>
     </div>
-    <div id="tab-alt" class="tab" style="display: block">
+    <div id="tab-alt" class="tab">
       <TabAltItem
           v-for="alt of alts"
           v-bind:alt="alt"
@@ -32,6 +32,13 @@
     props: ['todos', 'alts'],
     components: {
       TabItem, TabAltItem
-    }
+    },
+    // methods: {
+    //   showRandomTab: function () {
+    //     var RandomTab = Math.floor(Math.random() * this.todos.length)
+    //     this.$emit('give-advice', this.todos[RandomTab])
+    //     console.log('kek');
+    //   }
+    // }
   }
 </script>

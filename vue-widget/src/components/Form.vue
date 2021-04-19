@@ -1,7 +1,9 @@
 <template>
     <form class="form" id="regForm" action="">
       <div class="header_wrapper">
-        <div class="close_btn" onclick="document.getElementById('regForm').classList.toggle('open')"></div>
+        <div class="close_btn"
+             onclick="document.getElementById('regForm').classList.toggle('open')">
+        </div>
         <h2>widget</h2>
       </div>
       <div class="wrapper">
