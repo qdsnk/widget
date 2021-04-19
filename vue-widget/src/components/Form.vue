@@ -7,6 +7,7 @@
       <div class="wrapper">
         <Tabs
             v-bind:todos="todos"
+            v-bind:alts="alts"
         />
       </div>
 <!--      <div class="wrapper">-->
@@ -57,7 +58,10 @@ export default {
       todos: [
         {id: 1, text: 'Карточка товара показалась вам удобной?', completed: false},
         {id: 2, text: 'Вы нашли всю интересующую вас информацию по товару?', completed: false},
-        {id: 3, text: 'Вы нашли всю интересующую вас информацию по товару?', completed: false},
+      ],
+      alts: [
+        {id: 1, text: 'Что именно помогло бы вам изменить свое мнение?', completed: false},
+        {id: 2, text: 'Что бы вы хотели еще узнать о товаре перед покупкой', completed: false},
       ]
     }
   },
