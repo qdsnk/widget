@@ -1,6 +1,18 @@
 <template>
   <div id="tab-result" class="tab">
-    <p>Спасибо, Ваша обратная связь очень важна для нас!</p>
+<!--    <p>{{ result.text }}</p>-->
     <div class="like"></div>
   </div>
 </template>
+
+<script>
+
+// export default {
+//   props: {
+//     result: {
+//       type: Object,
+//       required: true
+//     }
+//   },
+// }
+</script>

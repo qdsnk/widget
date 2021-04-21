@@ -12,6 +12,42 @@
             v-bind:alts="alts"
         />
       </div>
+    </form>
+</template>
+<script>
+import Tabs from "./Tabs";
+export default {
+  data() {
+    return {
+      todos: [
+        {id: 1, text: 'Карточка товара показалась вам удобной?', completed: false},
+        {id: 2, text: 'Вы нашли всю интересующую вас информацию по товару?', completed: false},
+      ],
+      alts: [
+        {id: 1, text: 'Что именно помогло бы вам изменить свое мнение?', completed: false},
+        {id: 2, text: 'Что бы вы хотели еще узнать о товаре перед покупкой', completed: false},
+      ],
+      // data :{
+      //   display:false
+      // },
+      // results: [
+      //   {id: 1, text: 'Спасибо, Ваша обратная связь очень важна для нас!'}
+      // ]
+    }
+  },
+  components: {
+    Tabs
+  },
+  // methods: {
+  //   removeTab(id) {
+  //     this.todos = this.todos.filter(t => t.id !== id)
+  //   }
+  // },
+}
+</script>
+
+
+
 <!--      <div class="wrapper">-->
 <!--        <div id="tab-1" class="tab">-->
 <!--          <p>Карточка товара показалась вам удобной?</p>-->
@@ -50,25 +86,3 @@
 <!--          <div class="like"></div>-->
 <!--        </div>-->
 <!--      </div>-->
-    </form>
-</template>
-<script>
-import Tabs from "./Tabs";
-export default {
-  data() {
-    return {
-      todos: [
-        {id: 1, text: 'Карточка товара показалась вам удобной?', completed: false},
-        {id: 2, text: 'Вы нашли всю интересующую вас информацию по товару?', completed: false},
-      ],
-      alts: [
-        {id: 1, text: 'Что именно помогло бы вам изменить свое мнение?', completed: false},
-        {id: 2, text: 'Что бы вы хотели еще узнать о товаре перед покупкой', completed: false},
-      ]
-    }
-  },
-  components: {
-    Tabs
-  }
-}
-</script>

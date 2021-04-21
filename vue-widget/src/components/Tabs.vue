@@ -4,30 +4,33 @@
         v-for="todo of todos"
         v-bind:todo="todo"
         :key="todo.id"
+        v-on:remove-tab="removeTab"
+        v-on:show-result="showResult"
     />
-    <div class="btn-wrapper">
-      <div id="yes-btn" class="btn yes-btn">Да</div>
-      <div id="no-btn" class="btn no-btn">Нет</div>
-    </div>
+<!--    <ResultTab-->
+<!--        v-for="result of results"-->
+<!--        v-bind:result="result"-->
+<!--        :key="result.id"-->
+<!--        v-on:show-result="showResult"-->
+<!--    />-->
+<!--    <div id="tab-result" class="tab">-->
+<!--      <p>Спасибо, Ваша обратная связь очень важна для нас!</p>-->
+<!--      <div class="like"></div>-->
+<!--    </div>-->
     <div id="tab-alt" class="tab">
       <TabAltItem
           v-for="alt of alts"
           v-bind:alt="alt"
           :key="alt.id"
       />
-      <div class="btn-wrapper">
-        <div class="input-answer" data-value='1'>
-          <input id="input" type="text">
-        </div>
-        <div id="confirm" class="btn" data-value='1'>Ок</div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
   import TabItem from "./TabItem";
-  import TabAltItem from "@/components/TabAltItem";
+  import TabAltItem from "./TabAltItem";
+  // import ResultTab from "./ResultTab";
   export default {
     props: ['todos', 'alts'],
     components: {
@@ -40,5 +43,13 @@
     //     console.log('kek');
     //   }
     // }
+    methods: {
+      removeTab(id) {
+        this.todos = this.todos.filter(t => t.id !== id)
+      },
+      showResult() {
+        this.display = !this.display;
+      }
+    },
   }
 </script>
