@@ -20,13 +20,14 @@ export default {
   data() {
     return {
       todos: [
-        {id: 1, text: 'Карточка товара показалась вам удобной?', completed: false},
-        {id: 2, text: 'Вы нашли всю интересующую вас информацию по товару?', completed: false},
+        {id: 1, text: 'Карточка товара показалась вам удобной?', text2: 'дополнительный вопрос 1', completed: false},
+        {id: 2, text: 'Вы нашли всю интересующую вас информацию по товару?', text2: 'дополнительный вопрос 2', completed: false},
       ],
       alts: [
         {id: 1, text: 'Что именно помогло бы вам изменить свое мнение?', completed: false},
         {id: 2, text: 'Что бы вы хотели еще узнать о товаре перед покупкой', completed: false},
-      ],
+      ]
+      // el: "#settings",
       // data :{
       //   display:false
       // },
