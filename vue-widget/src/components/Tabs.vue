@@ -1,44 +1,47 @@
 <template>
   <div id="tab" class="tab" style="display: block">
     <TabItem
+        v-on:show-random="showRandomTab"
         v-for="todo of todos"
         v-bind:todo="todo"
         :key="todo.id"
-        v-on:show-random="showRandomTab"
         v-on:remove-tab="removeTab"
+    />
+    <!--    <div id="tab-result" class="tab" v-if="data.display">-->
+    <!--      <p>Спасибо, Ваша обратная связь очень важна для нас!</p>-->
+    <!--      <div id="btn" class="btn" v-on:click="showResult">kek</div>-->
+    <!--      <div class="like"></div>-->
+    <!--    </div>-->
+    <ResultTab
+        v-for="result of results"
+        v-bind:result="result"
+        :key="result.id"
         v-on:show-result="showResult"
     />
-    <div id="btn" class="btn" v-on:click="showRandomTab()">kek</div>
-    <div id="tab-result" class="tab" v-if="data.display">
-      <p>Спасибо, Ваша обратная связь очень важна для нас!</p>
-      <div class="like"></div>
-    </div>
-    <div id="tab-alt" class="tab">
-      <TabAltItem
-          v-for="alt of alts"
-          v-bind:alt="alt"
-          :key="alt.id"
-      />
-    </div>
+    <TabAltItem
+        v-for="alt of alts"
+        v-bind:alt="alt"
+        :key="alt.id"
+    />
   </div>
 </template>
 
 <script>
   import TabItem from "./TabItem";
   import TabAltItem from "./TabAltItem";
-  // import ResultTab from "./ResultTab";
+  import ResultTab from "./ResultTab";
   export default {
-    data() {
-      return {
-        el: '#tab',
-        data :{
-          display: false
-        },
-      }
-    },
-    props: ['todos', 'alts'],
+    // data() {
+    //   return {
+    //     el: '#tab',
+    //     data :{
+    //       display: false
+    //     },
+    //   }
+    // },
+    props: ['todos', 'alts', 'results'],
     components: {
-      TabItem, TabAltItem
+      TabItem, TabAltItem, ResultTab
     },
     // methods: {
     //   showRandomTab: function () {

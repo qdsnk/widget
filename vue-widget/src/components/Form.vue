@@ -10,6 +10,7 @@
         <Tabs
             v-bind:todos="todos"
             v-bind:alts="alts"
+            v-bind:results="results"
         />
       </div>
     </form>
@@ -26,14 +27,14 @@ export default {
       alts: [
         {id: 1, text: 'Что именно помогло бы вам изменить свое мнение?', completed: false},
         {id: 2, text: 'Что бы вы хотели еще узнать о товаре перед покупкой', completed: false},
-      ]
+      ],
       // el: "#settings",
       // data :{
       //   display:false
       // },
-      // results: [
-      //   {id: 1, text: 'Спасибо, Ваша обратная связь очень важна для нас!'}
-      // ]
+      results: [
+         {id: 1, text: 'Спасибо, Ваша обратная связь очень важна для нас!'}
+      ]
     }
   },
   components: {

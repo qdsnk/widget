@@ -3,7 +3,7 @@
     <p>{{ todo.text }}</p>
     <div class="btn-wrapper">
       <div id="yes-btn" class="btn yes-btn"
-           v-on:click="$emit('show-result'); $emit('remove-tab', todo.id)">Да</div>
+           v-on:click="$emit('remove-tab', todo.id); $emit('show-result')">Да</div>
       <div id="no-btn" class="btn no-btn">Нет</div>
     </div>
 <!--    <div id="btn" class="btn" v-on:click="showResult">keeek</div>-->
@@ -32,10 +32,10 @@ export default {
     },
   },
   methods: {
-    showResult() {
-      this.display = !this.display;
-      console.log('jmyak');
-    },
+    // showResult() {
+    //   this.display = !this.display;
+    //   console.log('jmyak');
+    // },
   //   showRandomTab: function () {
   //     var getTab = '';
   //     var RandomTab = Math.floor(Math.random() * this.todos.length);
