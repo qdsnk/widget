@@ -21,7 +21,7 @@ export default {
     return {
       el: '#tab-result',
       data :{
-        display: false
+        displayResult: false
       },
     }
   },
@@ -32,16 +32,16 @@ export default {
     },
   },
   methods: {
-    // showResult() {
-    //   this.display = !this.display;
-    //   console.log('jmyak');
-    // },
-  //   showRandomTab: function () {
-  //     var getTab = '';
-  //     var RandomTab = Math.floor(Math.random() * this.todos.length);
-  //     getTab = this.todos[RandomTab];
-  //     return getTab;
-  //   }
+    showResult() {
+      this.displayResult = !this.displayResult;
+      console.log('jmyak');
+    },
+    showRandomTab: function () {
+      var getTab = '';
+      var RandomTab = Math.floor(Math.random() * this.todos.length);
+      getTab = this.todos[RandomTab];
+      return getTab;
+    }
   },
   // created() {
   //   const RandomTab = Math.floor(Math.random() * this.todos.length);

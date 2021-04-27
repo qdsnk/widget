@@ -1,10 +1,12 @@
 <template>
   <div id="tab" class="tab" style="display: block">
+    <div id="btn" class="btn" v-on:click="showRandomTab">kek</div>
     <TabItem
         v-on:show-random="showRandomTab"
         v-for="todo of todos"
         v-bind:todo="todo"
         :key="todo.id"
+        v-on:show-result="showResult"
         v-on:remove-tab="removeTab"
     />
     <!--    <div id="tab-result" class="tab" v-if="data.display">-->
@@ -12,16 +14,15 @@
     <!--      <div id="btn" class="btn" v-on:click="showResult">kek</div>-->
     <!--      <div class="like"></div>-->
     <!--    </div>-->
-    <ResultTab
-        v-for="result of results"
-        v-bind:result="result"
-        :key="result.id"
-        v-on:show-result="showResult"
-    />
+      <div id="tab-result" v-if="this.displayResult">
+        <p>Спасибо, Ваша обратная связь очень важна для нас!</p>
+        <div class="like"></div>
+      </div>
     <TabAltItem
         v-for="alt of alts"
         v-bind:alt="alt"
         :key="alt.id"
+        v-on:show-result="showResult"
     />
   </div>
 </template>
@@ -29,33 +30,26 @@
 <script>
   import TabItem from "./TabItem";
   import TabAltItem from "./TabAltItem";
-  import ResultTab from "./ResultTab";
+  // import ResultTab from "./ResultTab";
   export default {
-    // data() {
-    //   return {
-    //     el: '#tab',
-    //     data :{
-    //       display: false
-    //     },
-    //   }
-    // },
-    props: ['todos', 'alts', 'results'],
-    components: {
-      TabItem, TabAltItem, ResultTab
+    data() {
+      return {
+        el: '#tab-result',
+        data: {
+          displayResult: false
+        },
+      }
     },
-    // methods: {
-    //   showRandomTab: function () {
-    //     var RandomTab = Math.floor(Math.random() * this.todos.length)
-    //     this.$emit('give-advice', this.todos[RandomTab])
-    //     console.log('kek');
-    //   }
-    // }
+    props: ['todos', 'alts'],
+    components: {
+      TabItem, TabAltItem
+    },
     methods: {
       removeTab(id) {
         this.todos = this.todos.filter(t => t.id !== id);
       },
       showResult() {
-        this.display = !this.display;
+        this.displayResult = !this.displayResult;
         console.log('jmyak');
       },
       showRandomTab: function () {
