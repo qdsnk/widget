@@ -3,12 +3,10 @@
     <div id="btn" class="btn" v-on:click="showRandomTab">kek</div>
     <TabItem
         v-on:show-random="showRandomTab"
-        v-for="todo of todos"
-        v-bind:todo="todo"
-        :key="todo.id"
         v-on:show-result="showResult"
-        v-on:remove-tab="removeTab"
-    />
+        v-on:remove-tab="removeTab">
+    </TabItem>
+
     <!--    <div id="tab-result" class="tab" v-if="data.display">-->
     <!--      <p>Спасибо, Ваша обратная связь очень важна для нас!</p>-->
     <!--      <div id="btn" class="btn" v-on:click="showResult">kek</div>-->
@@ -36,7 +34,10 @@
       return {
         el: '#tab-result',
         data: {
-          displayResult: false
+          displayResult: false,
+          // getTab: [
+          //   {id: '', text: '', text2: ''}
+          // ],
         },
       }
     },
@@ -45,19 +46,19 @@
       TabItem, TabAltItem
     },
     methods: {
+      showRandomTab: function () {
+        // var getTab = '';
+        var RandomTab = Math.floor(Math.random() * this.todos.length);
+        this.getTab = this.todos[RandomTab];
+        console.log(this.getTab.text);
+        return this.getTab.text;
+      },
       removeTab(id) {
         this.todos = this.todos.filter(t => t.id !== id);
       },
       showResult() {
         this.displayResult = !this.displayResult;
         console.log('jmyak');
-      },
-      showRandomTab: function () {
-        var getTab = '';
-        var RandomTab = Math.floor(Math.random() * this.todos.length);
-        getTab = this.todos[RandomTab];
-        console.log(getTab.text);
-        return getTab;
       }
     },
     // created() {

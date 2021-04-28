@@ -1,6 +1,6 @@
 <template>
   <div id="tablet">
-    <p>{{ todo.text }}</p>
+    <p>{{ getTab }}</p>
     <div class="btn-wrapper">
       <div id="yes-btn" class="btn yes-btn"
            v-on:click="$emit('remove-tab', todo.id); $emit('show-result')">Да</div>
@@ -19,34 +19,33 @@
 export default {
   data() {
     return {
-      el: '#tab-result',
+      el: '#tablet',
       data :{
-        displayResult: false
+        displayResult: false,
+        getTab: [
+          {id: '', text: '', text2: ''}
+        ],
       },
     }
   },
   props: {
-    todo: {
-      type: Object,
-      required: true
-    },
+    // todo: {
+    //   type: Object,
+    //   required: true
+    // },
   },
   methods: {
+    showRandomTab: function () {
+      // var getTab = '';
+      var RandomTab = Math.floor(Math.random() * this.todos.length);
+      this.getTab = this.todos[RandomTab];
+      console.log(this.getTab.text);
+      return this.getTab.text;
+    },
     showResult() {
       this.displayResult = !this.displayResult;
       console.log('jmyak');
-    },
-    showRandomTab: function () {
-      var getTab = '';
-      var RandomTab = Math.floor(Math.random() * this.todos.length);
-      getTab = this.todos[RandomTab];
-      return getTab;
     }
   },
-  // created() {
-  //   const RandomTab = Math.floor(Math.random() * this.todos.length);
-  //   this.getTab = this.todos[RandomTab];
-  //   console.log(this.todos[RandomTab]);
-  // }
 }
 </script>
