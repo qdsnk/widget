@@ -6,7 +6,6 @@
         v-on:show-result="showResult"
         v-on:remove-tab="removeTab">
     </TabItem>
-
     <!--    <div id="tab-result" class="tab" v-if="data.display">-->
     <!--      <p>Спасибо, Ваша обратная связь очень важна для нас!</p>-->
     <!--      <div id="btn" class="btn" v-on:click="showResult">kek</div>-->
