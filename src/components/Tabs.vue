@@ -6,12 +6,12 @@
 <!--        v-on:show-result="showResult"-->
 <!--        v-on:remove-tab="removeTab">-->
 <!--    </TabItem>-->
-    <div id="tablet">
+    <div id="tablet" v-if="display">
       <p>{{ showRandomTab() }}</p>
       <div class="btn-wrapper">
         <div id="yes-btn" class="btn yes-btn"
-             v-on:click="removeTab(); showResult()">Да</div>
-        <div id="no-btn" class="btn no-btn" v-on:click="removeTab(); showATab()">Нет</div>
+             v-on:click="removeTab(); showResult()" v-bind:class="{ disabled: notActive }">Да</div>
+        <div id="no-btn" class="btn no-btn" v-on:click="showATab()" v-bind:class="{ disabled: notActive }">Нет</div>
       </div>
       <div v-if="displayAltTab">
         <p>{{ showAltTab() }}</p>
@@ -48,14 +48,16 @@
   export default {
     data() {
       return {
-        el: '#tab',
-        data: {
+        // el: '#tab',
+        // data: {
           displayResult: false,
           displayAltTab: false,
+          display: true,
+          notActive: false,
           getTab: [
             {id: '', text: '', text2: ''}
           ],
-        },
+        // },
       }
     },
     props: ['todos', 'alts'],
@@ -71,20 +73,20 @@
       showAltTab: function () {
         return this.getTab.text2;
       },
-      removeTab(id) {
-        this.todos = this.todos.filter(t => t.id !== id);
-      },
-      // removeTab() {
-      //   this.displayResult = !this.displayResult;
-      //   this.displayAltTab = !this.displayAltTab;
+      // removeTab(id) {
+      //   this.todos = this.todos.filter(t => t.id !== id);
       // },
+      removeTab() {
+        this.display = !this.display;
+      },
       showResult() {
         this.displayResult = !this.displayResult;
-        console.log('jmyak');
+        this.notActive = !this.notActive;
+        console.log('da');
       },
       showATab() {
         this.displayAltTab = !this.displayAltTab;
-        console.log('alt');
+        console.log('net');
       }
     },
   }

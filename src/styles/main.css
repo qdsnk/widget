@@ -126,6 +126,13 @@ h2 {
 .btn:hover {
   opacity: 0.8;
 }
+.btn.disabled {
+  color: #646464;
+  background-color: #e9e9e9;
+}
+.btn.disabled:hover {
+  opacity: 1;
+}
 #prevBtn {
   background-color: #bbbbbb;
 }
@@ -174,4 +181,3 @@ h2 {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 7px;
   border-radius: 12px 0px 0px 12px;
 }
-/*# sourceMappingURL=main.css.map */

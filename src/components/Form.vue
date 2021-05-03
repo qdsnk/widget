@@ -1,5 +1,10 @@
 <template>
-    <form class="form" id="regForm" action="">
+    <form class="form" id="regForm">
+      <!-- <div>
+      <input type="text" name="author" v-model="post.author">
+      <input type="text" name="title" v-model="post.title">
+      <button type="submit">Post</button>
+      </div> -->
       <div class="header_wrapper">
         <div class="close_btn"
              onclick="document.getElementById('regForm').classList.toggle('open')">
@@ -16,10 +21,18 @@
     </form>
 </template>
 <script>
+// import Vue from 'vue'
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
+// Vue.use(VueAxios, axios)
 import Tabs from "./Tabs";
 export default {
   data() {
     return {
+      posts: {
+        title: null,
+        author: null
+      },
       todos: [
         {id: 1, text: '1Карточка товара показалась вам удобной?', text2: 'дополнительный вопрос 1'},
         {id: 2, text: '2Вы нашли всю интересующую вас информацию по товару?', text2: 'дополнительный вопрос 2'},
@@ -39,6 +52,15 @@ export default {
   },
   components: {
     Tabs
+  },
+  methods: {
+    // postData(e) {
+    //   this.axios.post("http://localhost:3000/posts/",this.posts)
+    //   .then((result)=>{
+    //     console.warn(result)
+    //   })
+    //   e.preventDefault();
+    // }
   },
   // methods: {
   //   removeTab(id) {
