@@ -3,14 +3,9 @@
     <p>{{ showRandomTab() }}</p>
     <div class="btn-wrapper">
       <div id="yes-btn" class="btn yes-btn"
-           v-on:click="$emit('remove-tab', todo.id); $emit('show-result')">Да</div>
+           v-on:click="$emit('remove-tab', getTab); $emit('show-result')">Да</div>
       <div id="no-btn" class="btn no-btn">Нет</div>
     </div>
-<!--    <div id="btn" class="btn" v-on:click="showResult">keeek</div>-->
-<!--    <div id="tab-result" class="tab" v-if="data.display">-->
-<!--      <p>Спасибо, Ваша обратная связь очень важна для нас!</p>-->
-<!--      <div class="like"></div>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -22,9 +17,9 @@ export default {
       el: '#tablet',
       data :{
         displayResult: false,
-        getTab: [
-          {id: '', text: '', text2: ''}
-        ],
+        // getTab: [
+        //   {id: '', text: '', text2: ''}
+        // ],
       },
     }
   },
