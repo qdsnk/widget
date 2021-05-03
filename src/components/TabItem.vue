@@ -1,6 +1,6 @@
 <template>
   <div id="tablet">
-    <p>{{ getTab }}</p>
+    <p>{{ showRandomTab() }}</p>
     <div class="btn-wrapper">
       <div id="yes-btn" class="btn yes-btn"
            v-on:click="$emit('remove-tab', todo.id); $emit('show-result')">Да</div>
