@@ -16,9 +16,9 @@
       <p>{{ showRandomTab() }}</p>
       <div class="btn-wrapper">
         <div id="yes" class="btn yes-btn"
-             v-on:click="showResult(); reply_click" v-bind:class="{ disabled: notActive }">Да
+             v-on:click="showResult();" v-bind:class="{ disabled: notActive }">Да
         </div>
-        <div id="no" class="btn no-btn" v-on:click="showATab(); reply_click"
+        <div id="no" class="btn no-btn" v-on:click="showATab();"
              v-bind:class="{ disabled: notActive }">Нет
         </div>
       </div>
@@ -44,6 +44,8 @@
 <script>
 // import TabItem from "./TabItem";
 // import TabAltItem from "./TabAltItem";
+// import './assets/js/detect.min.js';
+
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -67,7 +69,10 @@ export default {
         answer2: null,
         timeAndDate: null,
         screen: null,
-        userIP: null
+        userIP: null,
+        browser: null,
+        device: null,
+        fromPage: null
       },
     }
   },
@@ -77,10 +82,17 @@ export default {
   },
   methods: {
     showRandomTab: function () {
-      // if страница каталога get todos-catalog {...} if страница корзины get todos-cart {...} if страница товаров get {...
+      // if страница товаров get {...
+      if (window.location.href == 'http://localhost:8080/') {
       var RandomTab = Math.floor(Math.random() * this.todos.length);
       this.getTab = this.todos[RandomTab];
       return this.getTab.text;
+      }
+      // if страница каталога get todos-catalog 
+      // {...} 
+      // if страница корзины get todos-cart
+      // {...}
+      // после создания страниц использовать if (window.location.pathname=='/account')
     },
     reply_click(id) {
       console.log(id);
@@ -125,13 +137,49 @@ export default {
 
       this.posts.screen = document.documentElement.clientWidth;
 
+      let a = '';
+      if (navigator.userAgent.search(/Safari/) > 0) {a = 'Safari'}
+      if (navigator.userAgent.search(/Firefox/) > 0) {a = 'MozillaFirefox'}
+      if (navigator.userAgent.search(/MSIE/) > 0 || navigator.userAgent.search(/NET CLR /) > 0) {a = 'Internet Explorer'}
+      if (navigator.userAgent.search(/Chrome/) > 0) {a = 'Google Chrome'}
+      if (navigator.userAgent.search(/YaBrowser/) > 0) {a = 'Яндекс браузер'}
+      if (navigator.userAgent.search(/OPR/) > 0) {a = 'Opera'}
+      if (navigator.userAgent.search(/Konqueror/) > 0) {a = 'Konqueror'}
+      if (navigator.userAgent.search(/Iceweasel/) > 0) {a = 'Debian Iceweasel'}
+      if (navigator.userAgent.search(/SeaMonkey/) > 0) {a = 'SeaMonkey'}
+      if (navigator.userAgent.search(/Edge/) > 0) {a = 'Microsoft Edge'}
+      this.posts.browser = a;
+
+      var userDeviceArray = [
+      {device: 'Android', platform: /Android/},
+      {device: 'iPhone', platform: /iPhone/},
+      {device: 'iPad', platform: /iPad/},
+      {device: 'Symbian', platform: /Symbian/},
+      {device: 'Windows Phone', platform: /Windows Phone/},
+      {device: 'Tablet OS', platform: /Tablet OS/},
+      {device: 'Linux', platform: /Linux/},
+      {device: 'Windows', platform: /Windows NT/},
+      {device: 'Macintosh', platform: /Macintosh/}
+      ];
+      var platform = navigator.userAgent;
+      function getPlatform() {
+          for (var i in userDeviceArray) {
+              if (userDeviceArray[i].platform.test(platform)) {
+                  return userDeviceArray[i].device;
+              }
+          }
+          return 'Неизвестная платформа!' + platform;
+      }
+      this.posts.device = getPlatform();
+
       fetch('https://api.ipify.org?format=json')
           .then(x => x.json())
           .then(({ip}) => {
             this.posts.userIP = ip;
-            console.log(this.posts.userIP);
           });
+      this.posts.fromPage = window.location.href;
     },
+
     // submitForm: (formElement) => {
     //   let form = document.getElementById(formElement);
     //   form.submit();
@@ -140,10 +188,10 @@ export default {
     postData(e) {
       // this.axios.post("")
       this.getInfo();
-      this.axios.post("http://localhost:3000/posts/", this.posts)
+      setTimeout(() => this.axios.post("http://localhost:3000/posts/", this.posts)
           .then((result) => {
             console.warn(result)
-          })
+          }), 5000)
       e.preventDefault();
       this.display = !this.display;
     },
