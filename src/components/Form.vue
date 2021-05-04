@@ -1,4 +1,5 @@
 <template>
+  <div>
     <form class="form" id="regForm">
       <!-- <div>
       <input type="text" name="author" v-model="post.author">
@@ -19,23 +20,26 @@
         />
       </div>
     </form>
+  </div>
 </template>
 <script>
-// import Vue from 'vue'
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
-// Vue.use(VueAxios, axios)
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
 import Tabs from "./Tabs";
 export default {
   data() {
     return {
       posts: {
-        title: null,
-        author: null
+        question: null,
+        answer: null,
+        question2: null,
+        answer2: null
       },
       todos: [
-        {id: 1, text: '1Карточка товара показалась вам удобной?', text2: 'дополнительный вопрос 1'},
-        {id: 2, text: '2Вы нашли всю интересующую вас информацию по товару?', text2: 'дополнительный вопрос 2'},
+        {id: 1, text: '1) Карточка товара показалась вам удобной?', text2: '1.2) Что именно помогло бы вам изменить свое мнение?'},
+        {id: 2, text: '2) Вы нашли всю интересующую вас информацию по товару?', text2: '2.2) Что бы вы хотели еще узнать о товаре перед покупкой?'},
       ],
       alts: [
         {id: 1, text: 'Что именно помогло бы вам изменить свое мнение?'},
@@ -54,13 +58,14 @@ export default {
     Tabs
   },
   methods: {
-    // postData(e) {
-    //   this.axios.post("http://localhost:3000/posts/",this.posts)
-    //   .then((result)=>{
-    //     console.warn(result)
-    //   })
-    //   e.preventDefault();
-    // }
+    postData(e) {
+      // this.axios.post("")
+      this.axios.post("http://localhost:3000/posts/",this.posts)
+          .then((result)=>{
+            console.warn(result)
+          })
+      e.preventDefault();
+    }
   },
   // methods: {
   //   removeTab(id) {
