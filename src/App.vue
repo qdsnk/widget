@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ToggleButton />
-    <Form/>
+    <Form />
   </div>
 </template>
 

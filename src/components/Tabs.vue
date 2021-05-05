@@ -16,7 +16,7 @@
       <p>{{ showRandomTab() }}</p>
       <div class="btn-wrapper">
         <div id="yes" class="btn yes-btn"
-             v-on:click="showResult();" v-bind:class="{ disabled: notActive }">Да
+             v-on:click="showResult(); btnYesClicked(); postData()" v-bind:class="{ disabled: notActive }">Да
         </div>
         <div id="no" class="btn no-btn" v-on:click="showATab();"
              v-bind:class="{ disabled: notActive }">Нет
@@ -59,9 +59,10 @@ export default {
       displayAltTab: false,
       display: true,
       notActive: false,
-      getTab: [
-        {id: '', text: '', text2: ''}
-      ],
+      // getTab: [
+      //   {id: '', text: '', text2: ''}
+      // ],
+      getTab: null,
       posts: {
         question: null,
         answer: null,
@@ -76,28 +77,33 @@ export default {
       },
     }
   },
-  props: ['todos', 'alts'],
+  props: ['todos', 'alts', 'todosCatalog', 'todosCart'],
   components: {
     // TabItem, TabAltItem
   },
   methods: {
     showRandomTab: function () {
-      // if страница товаров get {...
-      if (window.location.href == 'http://localhost:8080/') {
-      var RandomTab = Math.floor(Math.random() * this.todos.length);
-      this.getTab = this.todos[RandomTab];
-      return this.getTab.text;
+      if (this.getTab === null){
+        if (window.location.href == 'http://localhost:8080/') {
+          var RandomTab = Math.floor(Math.random() * this.todos.length);
+          this.getTab = this.todos[RandomTab];
+        }
+        if (window.location.href == 'http://localhost:8080/?') {
+          var RandomTabCatalog = Math.floor(Math.random() * this.todosCatalog.length);
+          this.getTab = this.todosCatalog[RandomTabCatalog];
+        }
+        if (window.location.pathname == '/cart') {
+          var RandomTabCart = Math.floor(Math.random() * this.todosCart.length);
+          this.getTab = this.todosCart[RandomTabCart];
+        }
       }
-      // if страница каталога get todos-catalog 
-      // {...} 
-      // if страница корзины get todos-cart
-      // {...}
-      // после создания страниц использовать if (window.location.pathname=='/account')
+      return this.getTab.text;
     },
-    reply_click(id) {
-      console.log(id);
+    btnYesClicked() {
+      this.posts.answer = 'da';
     },
     showAltTab: function () {
+      this.posts.answer = 'net';
       return this.getTab.text2;
     },
     // removeTab(id) {
@@ -117,14 +123,6 @@ export default {
       this.displayAltTab = !this.displayAltTab;
       console.log('net');
     },
-    // showYourIP() {
-    //   fetch('https://api.ipify.org?format=json')
-    //       .then(x => x.json())
-    //       .then(({ip}) => {
-    //         this.posts.userIP = ip;
-    //         console.log(this.posts.userIP);
-    //       });
-    // },
     getInfo: function () {
       this.posts.question = this.getTab.text;
       this.posts.question2 = this.getTab.text2;

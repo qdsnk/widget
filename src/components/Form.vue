@@ -15,6 +15,8 @@
       <div class="wrapper">
         <Tabs
             v-bind:todos="todos"
+            v-bind:todosCatalog="todosCatalog"
+            v-bind:todosCart="todosCart"
             v-bind:alts="alts"
             v-bind:results="results"
         />
@@ -31,15 +33,24 @@ import Tabs from "./Tabs";
 export default {
   data() {
     return {
-      posts: {
-        question: null,
-        answer: null,
-        question2: null,
-        answer2: null
-      },
+      // posts: {
+      //   question: null,
+      //   answer: null,
+      //   question2: null,
+      //   answer2: null
+      // },
+      // displayForm: true,
       todos: [
         {id: 1, text: '1) Карточка товара показалась вам удобной?', text2: '1.2) Что именно помогло бы вам изменить свое мнение?'},
         {id: 2, text: '2) Вы нашли всю интересующую вас информацию по товару?', text2: '2.2) Что бы вы хотели еще узнать о товаре перед покупкой?'},
+      ],
+      todosCatalog: [
+      {id: 1, text: '1)Каталог', text2: '1.2)Каталог'},
+      {id: 2, text: '2)Каталог', text2: '2.2)Каталог'},
+      ],
+      todosCart: [
+        {id: 1, text: '1)Корзина', text2: '1.2)Корзина'},
+        {id: 2, text: '2)Корзина', text2: '2.2)Корзина'},
       ],
       alts: [
         {id: 1, text: 'Что именно помогло бы вам изменить свое мнение?'},
@@ -58,14 +69,18 @@ export default {
     Tabs
   },
   methods: {
-    postData(e) {
-      // this.axios.post("")
-      this.axios.post("http://localhost:3000/posts/",this.posts)
-          .then((result)=>{
-            console.warn(result)
-          })
-      e.preventDefault();
-    }
+    // postData(e) {
+    //   // this.axios.post("")
+    //   this.axios.post("http://localhost:3000/posts/",this.posts)
+    //       .then((result)=>{
+    //         console.warn(result)
+    //       })
+    //   e.preventDefault();
+    // }
+    // showForm() {
+    //   this.displayForm = !this.displayForm;
+    //   console.log('jmyak');
+    // }
   },
   // methods: {
   //   removeTab(id) {
