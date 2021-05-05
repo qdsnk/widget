@@ -17,8 +17,6 @@
             v-bind:todos="todos"
             v-bind:todosCatalog="todosCatalog"
             v-bind:todosCart="todosCart"
-            v-bind:alts="alts"
-            v-bind:results="results"
         />
       </div>
     </form>

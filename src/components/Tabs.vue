@@ -24,14 +24,12 @@
       </div>
       <div v-if="displayAltTab">
         <p>{{ showAltTab() }}</p>
-        <div class="btn-wrapper">
-          <div class="input-answer">
-            <form @submit="postData" method="post">
-              <input type="text" name="answer2" placeholder="author" v-model="posts.answer2">
-              <button id="confirm" class="btn" type="submit" v-on:click="showResult(); getInfo()">Ок</button>
+            <form @submit="postData" method="post" class="form-input">
+              <input type="text" name="answer2" placeholder="Введите ответ" v-model="posts.answer2">
+              <div class="btn-wrapper">
+                <button id="confirm" class="btn" type="submit" v-on:click="showResult(); getInfo()">Ок</button>
+              </div>
             </form>
-          </div>
-        </div>
       </div>
     </div>
     <div id="tab-result" v-if="this.displayResult">

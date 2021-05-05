@@ -1,18 +1,19 @@
 import '@/styles/reset.css';
 import '@/styles/main.css';
-// import LoadScript from 'vue-plugin-load-script';
 import Vue from 'vue'
 import App from './App.vue'
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
+import 'document-register-element/build/document-register-element'
+import vueCustomElement from 'vue-custom-element'
 
-new Vue({
-    // data :{
-    //     display:false
-    // },
-  render: h => h(App),
-}).$mount('#app')
+Vue.use (vueCustomElement)
 
+// new Vue({
+//     // data :{
+//     //     display:false
+//     // },
+//   render: h => h(App),
+// }).$mount('#app')
 
-// Vue.use(LoadScript);
-// Vue.loadScript("/assets/js/detect.js");
+Vue.customElement('vue-widget', App)
