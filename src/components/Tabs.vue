@@ -80,13 +80,13 @@ export default {
     // TabItem, TabAltItem
   },
   methods: {
-    showRandomTab: function () {
+    showRandomTab() {
       if (this.getTab === null){
-        if (window.location.href == 'http://localhost:8080/') {
+        if (window.location.href == 'http://test.loc/') {
           var RandomTab = Math.floor(Math.random() * this.todos.length);
           this.getTab = this.todos[RandomTab];
         }
-        if (window.location.href == 'http://localhost:8080/?') {
+        if (window.location.href == 'http://localhost:8080/') {
           var RandomTabCatalog = Math.floor(Math.random() * this.todosCatalog.length);
           this.getTab = this.todosCatalog[RandomTabCatalog];
         }
@@ -100,7 +100,7 @@ export default {
     btnYesClicked() {
       this.posts.answer = 'da';
     },
-    showAltTab: function () {
+    showAltTab() {
       this.posts.answer = 'net';
       return this.getTab.text2;
     },
