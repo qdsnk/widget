@@ -82,11 +82,11 @@ export default {
   methods: {
     showRandomTab() {
       if (this.getTab === null){
-        if (window.location.href == 'http://test.loc/') {
+        if (window.location.pathname == '/') {
           var RandomTab = Math.floor(Math.random() * this.todos.length);
           this.getTab = this.todos[RandomTab];
         }
-        if (window.location.href == 'http://localhost:8080/') {
+        if (window.location.pathname == '/catalog') {
           var RandomTabCatalog = Math.floor(Math.random() * this.todosCatalog.length);
           this.getTab = this.todosCatalog[RandomTabCatalog];
         }
