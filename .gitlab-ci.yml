@@ -1,0 +1,23 @@
+image: node:14.16.0
+pages:
+  cache:
+    paths:
+      - node_modules/
+  stage: deploy
+  script:
+    - npm install
+    - npm install vue
+    - npm install -g @vue/cli
+    - npm install webpack --save
+    - npm install axios
+    - npm install -g json-server
+    - json-server -w db.json
+    - npm install vue-custom-element --save
+    - npm install document-register-element --save
+    - npm run build
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - widget
